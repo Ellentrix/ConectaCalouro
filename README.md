@@ -112,25 +112,4 @@ usuário, denúncia, moderação, responsividade etc.) estão registrados em
 - Trello (planejamento ágil — Etapa 2): https://trello.com/b/h671ZNLU/conectacalouro-etapa2
 - GitHub Issues: https://github.com/Ellentrix/ConectaCalouro/issues
 
-## Publicando a Release v1.0.0 no GitHub
 
-1. Faça commit de todos os arquivos deste projeto no repositório.
-2. No GitHub, acesse **Releases → Draft a new release**.
-3. Em "Tag", crie a tag `v1.0.0`.
-4. Em "Release title", use `v1.0.0 — Entrega final (Etapa 3)`.
-5. Na descrição, resuma o que foi entregue, por exemplo:
-   - Site funcional em HTML, CSS e JavaScript, sem backend;
-   - Cadastro/login simulados com `localStorage`;
-   - Materiais, dicas, mural de interação e denúncias implementados;
-   - Painel administrativo para gestão de usuários e moderação;
-   - Documentação completa em `docs/`.
-6. Publique a release.
-
-Depois de criar a release, atualize o quadro do Trello movendo os cartões da
-Etapa 3 para a coluna "Concluído" e adicione um comentário/anexo com o link
-da release publicada.
-
-## Autor
-
-Projeto desenvolvido para a disciplina Projeto Integrador II, curso técnico
-de informática (professor Clécio Sousa).
