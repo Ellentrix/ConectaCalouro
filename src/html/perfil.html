@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ConectaCalouro — Meu perfil</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="navbar"><div id="navbar"></div></nav>
+
+  <div class="page" style="max-width:560px;">
+    <div class="page-header">
+      <div>
+        <h1>Meu perfil</h1>
+        <p>Seus dados de cadastro nesta demonstração.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div id="dados-perfil"></div>
+      <button id="btn-sair" class="btn btn-danger" style="margin-top:16px;">Sair da conta</button>
+    </div>
+  </div>
+
+  <script src="js/dados.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/script.js"></script>
+  <script>
+    const usuario = ccProtegerPagina();
+    if (usuario) {
+      ccRenderNavbar("perfil");
+      document.getElementById("dados-perfil").innerHTML = `
+        <div class="field"><label>Nome</label><input value="${ccEscapeHtml(usuario.nome)}" disabled></div>
+        <div class="field"><label>E-mail</label><input value="${ccEscapeHtml(usuario.email)}" disabled></div>
+        <div class="field"><label>Tipo de conta</label><input value="${ccRotuloTipo(usuario.tipo)}" disabled></div>
+      `;
+      document.getElementById("btn-sair").addEventListener("click", ccLogout);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ConectaCalouro — Criar conta</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="navbar"><div id="navbar"></div></nav>
+
+  <div class="auth-wrap">
+    <div class="card auth-card">
+      <h1>Criar conta</h1>
+      <p class="sub">Cadastre-se como aluno novato ou veterano</p>
+
+      <div id="alerta" class="alert alert-error" style="display:none;"></div>
+
+      <form id="form-cadastro">
+        <div class="field">
+          <label for="nome">Nome completo</label>
+          <input type="text" id="nome" required />
+        </div>
+        <div class="field">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" required />
+        </div>
+        <div class="field">
+          <label for="senha">Senha</label>
+          <input type="password" id="senha" minlength="6" required />
+          <div class="hint">Mínimo de 6 caracteres.</div>
+        </div>
+        <div class="field">
+          <label for="confirmarSenha">Confirmar senha</label>
+          <input type="password" id="confirmarSenha" minlength="6" required />
+        </div>
+        <div class="field">
+          <label for="tipo">Você é...</label>
+          <select id="tipo" required>
+            <option value="">Selecione</option>
+            <option value="novato">Aluno Novato</option>
+            <option value="veterano">Aluno Veterano</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
+      </form>
+
+      <p class="auth-switch">Já tem conta? <a href="login.html">Entrar</a></p>
+
+      <div class="demo-box">
+        <b>Dica para o professor:</b> não é necessário cadastrar — já existem contas de demonstração
+        na tela de login para os três perfis (novato, veterano e administrador).
+      </div>
+    </div>
+  </div>
+
+  <script src="js/dados.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/script.js"></script>
+  <script>
+    ccRenderNavbar("cadastro");
+
+    document.getElementById("form-cadastro").addEventListener("submit", function (evento) {
+      evento.preventDefault();
+      const alerta = document.getElementById("alerta");
+      alerta.style.display = "none";
+
+      const nome = document.getElementById("nome").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const senha = document.getElementById("senha").value;
+      const confirmarSenha = document.getElementById("confirmarSenha").value;
+      const tipo = document.getElementById("tipo").value;
+
+      if (senha !== confirmarSenha) {
+        alerta.textContent = "As senhas não coincidem.";
+        alerta.style.display = "block";
+        return;
+      }
+      if (!tipo) {
+        alerta.textContent = "Selecione o tipo de usuário.";
+        alerta.style.display = "block";
+        return;
+      }
+
+      const resultado = ccCadastrarUsuario(nome, email, senha, tipo);
+      if (!resultado.ok) {
+        alerta.textContent = resultado.mensagem;
+        alerta.style.display = "block";
+        return;
+      }
+
+      ccToast("Conta criada com sucesso! Faça login para continuar.", "success");
+      setTimeout(() => (window.location.href = "login.html"), 900);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ConectaCalouro — Materiais</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="navbar"><div id="navbar"></div></nav>
+
+  <div class="page">
+    <div class="page-header">
+      <div>
+        <h1>Materiais de estudo</h1>
+        <p>Resumos, roteiros e listas de exercícios compartilhados pela comunidade.</p>
+      </div>
+    </div>
+
+    <div id="aviso-permissao" class="alert alert-info" style="display:none;">
+      Alunos novatos podem visualizar e denunciar materiais. Apenas alunos veteranos e administradores podem publicar novos materiais.
+    </div>
+
+    <div id="bloco-form-material" class="card" style="margin-bottom:24px; display:none;">
+      <h3 style="margin-top:0;">Publicar novo material</h3>
+      <form id="form-material">
+        <div class="field">
+          <label for="mat-titulo">Título</label>
+          <input type="text" id="mat-titulo" required />
+        </div>
+        <div class="field">
+          <label for="mat-disciplina">Disciplina</label>
+          <select id="mat-disciplina" required>
+            <option value="">Selecione</option>
+            <option>Matemática</option>
+            <option>Português</option>
+            <option>História</option>
+            <option>Geografia</option>
+            <option>Inglês</option>
+            <option>Biologia</option>
+            <option>Física</option>
+            <option>Ed.Fisíca</option>
+            <option>Sociologia</option>
+            <option>Redação</option>
+            <option>Química</option>
+            <option>Espanhol</option>
+            <option>Proj.Vida</option>
+            <option>Informática Básica</option>
+            <option>Programação</option>
+            <option>Projeto Integrador</option>
+            <option>Engenharia de Software</option>
+            <option>Banco de Dados</option>
+            <option>Desenvolvimento web</option>
+            
+          </select>
+        </div>
+        <div class="field">
+          <label for="mat-categoria">Categoria</label>
+          <input type="text" id="mat-categoria" placeholder="Ex: Resumo, Lista de exercícios..." required />
+        </div>
+        <div class="field">
+          <label for="mat-descricao">Descrição</label>
+          <textarea id="mat-descricao" rows="3" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Publicar material</button>
+      </form>
+    </div>
+
+    <div class="toolbar">
+      <label for="filtro-disciplina" style="font-size:0.88rem; color:var(--muted);">Filtrar por disciplina:</label>
+      <select id="filtro-disciplina">
+        <option value="">Todas</option>
+        <option>Matemática</option>
+        <option>Português</option>
+        <option>História</option>
+        <option>Geografia</option>
+        <option>Informática</option>
+      </select>
+    </div>
+
+    <div class="grid" id="lista-materiais"></div>
+  </div>
+
+  <script src="js/dados.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/materiais.js"></script>
+</body>
+</html>
