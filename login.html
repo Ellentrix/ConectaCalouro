@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ConectaCalouro — Entrar</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="navbar"><div id="navbar"></div></nav>
+
+  <div class="auth-wrap">
+    <div class="card auth-card">
+      <h1>Bem-vindo de volta</h1>
+      <p class="sub">Entre com seu e-mail e senha</p>
+
+      <div id="alerta" class="alert alert-error" style="display:none;"></div>
+
+      <form id="form-login">
+        <div class="field">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" required />
+        </div>
+        <div class="field">
+          <label for="senha">Senha</label>
+          <input type="password" id="senha" required />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+      </form>
+
+      <p class="auth-switch">Ainda não tem conta? <a href="cadastro.html">Criar conta</a></p>
+
+      <div class="demo-box">
+        <b>Contas de demonstração</b> (senha entre parênteses):<br />
+        Novato: novato@teste.com (123456)<br />
+        Veterano: veterano@teste.com (123456)<br />
+        Administrador: admin@teste.com (admin123)
+      </div>
+    </div>
+  </div>
+
+  <script src="js/dados.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/script.js"></script>
+  <script>
+    ccRenderNavbar("login");
+
+    document.getElementById("form-login").addEventListener("submit", function (evento) {
+      evento.preventDefault();
+      const alerta = document.getElementById("alerta");
+      alerta.style.display = "none";
+
+      const email = document.getElementById("email").value;
+      const senha = document.getElementById("senha").value;
+
+      const resultado = ccLogin(email, senha);
+      if (!resultado.ok) {
+        alerta.textContent = resultado.mensagem;
+        alerta.style.display = "block";
+        return;
+      }
+
+      ccToast(`Bem-vindo(a), ${resultado.usuario.nome}!`, "success");
+      setTimeout(() => (window.location.href = "inicio.html"), 500);
+    });
+  </script>
+</body>
+</html>
